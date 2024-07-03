@@ -1,0 +1,32 @@
+Login - Register (JWT Authentication)
+Settings - Update Name and Password
+
+
+Board 
+Analytics
+
+qwerty 
+
+so mere 4 div honge aise lambe lambe, unke andar me respective state ke basis pe voh saara data bhejunga okay?yes 
+
+
+open db ? mongodb kholo, are you there?yes
+
+
+_id
+660f023aaf90635cc47814b4
+AddText
+"dgfhbnvbv"
+Date
+"2024-04-19"
+Title
+"dgfhbnvbv"
+Priority
+"High priority"
+__v
+0
+"status"
+"inprogress"
+
+
+fir dekho number of checked wale task ka number bhi h idhr

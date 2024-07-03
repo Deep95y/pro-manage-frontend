@@ -1,0 +1,57 @@
+.modal::after {
+    content: "*";
+    color: red;
+}
+.title::after {
+    content: "*";
+    color: red;
+}
+.check::after {
+    content: "*";
+    color: red;
+}
+
+/* index.css */
+.board, .analytics, .setting {
+  transition: background-color 0.3s ease;
+}
+
+.board:hover, .analytics:hover, .setting:hover {
+  background-color: #4391ED;
+  color: white; /* Optional: to change text color on hover */
+}
+
+
+  .dropdown {
+   margin-left: 10px;
+   display: flex;
+  
+  }
+  
+  .dropdown-toggle {
+    cursor: pointer;
+    
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    padding: 10px;
+    z-index: 1;
+    border: 1px solid #ccc;
+  }
+  
+  .dropdown-content.show {
+    display: block;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the track */
+  }
+  
