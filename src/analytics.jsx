@@ -63,24 +63,23 @@ const Analytics = () => {
       <div style={{ borderRightStyle: 'inset', width: '200px', borderRight: '1px solid #EDF5FE' }}>
         <Sidebar />
       </div>
-      <h1 style={{ marginLeft: '80px', marginTop: '40px' }}>Analytics</h1>
-      <div style={{ height: '100vh', display: 'flex', flexDirection: 'row', position: 'absolute', marginLeft: '20%', marginTop: '20px' }}>
+      <h2 style={{ marginLeft: '80px', marginTop: '40px',fontFamily:'sans-serif' }}>Analytics</h2>
+      <div style={{ height: '100vh', display: 'flex', flexDirection: 'row', position: 'absolute', marginLeft: '25%', marginTop: '20px' }}>
         <div style={{ display: 'flex', flexDirection: 'row', height: '400px', width: '800px', marginTop: '90px' }}>
-          <div style={{ height: '200px', width: '400px', background: '#F9FCFF' }}>
-            <ul>  
-              <li>Backlog-task ---------- {countbacklog}</li><br />
-              <li>To-do task ---------- {counttodo}</li><br />
-              <li>In-Progress task ---------- {countprogress}</li><br />
-              <li>Completed task ---------- {countdone}</li>
-            </ul>
+          <div style={{ height: '200px', width: '400px', background: '#F9FCFF',display:'flex',flexDirection:'column' }}>
+           
+          <div style={{display:'flex', flexDirection:'row',marginLeft:'40px',marginTop:'30px'}}> <div style={{height:'10px',width:'10px',borderRadius:'20px',borderStyle:'none',background:'#90C4CC',marginTop:'5px'}}></div><div style={{marginLeft:'10px',fontSize:'20px'}}>Backlog-task</div>  <div style={{marginLeft:'190px',fontWeight:'bold',fontSize:'20px'}}>{countbacklog}</div> </div>
+          <div style={{display:'flex', flexDirection:'row',marginLeft:'40px',marginTop:'20px'}}> <div style={{height:'10px',width:'10px',borderRadius:'20px',borderStyle:'none',background:'#90C4CC',marginTop:'5px'}}></div><div style={{marginLeft:'10px',fontSize:'20px'}}>To-do task</div>  <div style={{marginLeft:'210px',fontWeight:'bold',fontSize:'20px'}}>{counttodo}</div> </div>
+          <div style={{display:'flex', flexDirection:'row',marginLeft:'40px',marginTop:'20px'}}> <div style={{height:'10px',width:'10px',borderRadius:'20px',borderStyle:'none',background:'#90C4CC',marginTop:'5px'}}></div><div style={{marginLeft:'10px',fontSize:'20px'}}>In-Progress task </div>  <div style={{marginLeft:'167px',fontWeight:'bold',fontSize:'20px'}}>{countprogress}</div> </div>
+          <div style={{display:'flex', flexDirection:'row',marginLeft:'40px',marginTop:'20px'}}> <div style={{height:'10px',width:'10px',borderRadius:'20px',borderStyle:'none',background:'#90C4CC',marginTop:'5px'}}></div><div style={{marginLeft:'10px',fontSize:'20px'}}>Completed task</div>  <div style={{marginLeft:'172px',fontWeight:'bold',fontSize:'20px'}}>{countdone}</div> </div>
+
           </div>
-          <div style={{ height: '200px', width: '400px', background: '#F9FCFF' }}>
-            <ul>
-              <li>Low-priority ---------- {countlow}</li><br />
-              <li>High-priority ---------- {counthigh}</li><br />
-              <li>Moderate-priority ---------- {countmedium}</li><br />
-              <li>Due-date task ---------- 0</li>
-            </ul>
+          <div style={{ height: '200px', width: '400px', background: '#F9FCFF',marginLeft:'30px',display:'flex',flexDirection:'column'  }}>
+          
+           <div style={{display:'flex', flexDirection:'row',marginLeft:'40px',marginTop:'30px'}}> <div style={{height:'10px',width:'10px',borderRadius:'20px',borderStyle:'none',background:'#90C4CC',marginTop:'5px'}}></div><div style={{marginLeft:'10px',fontSize:'20px'}}>Low-priority</div>  <div style={{marginLeft:'193px',fontWeight:'bold',fontSize:'20px',}}> {countlow}</div> </div>
+          <div style={{display:'flex', flexDirection:'row',marginLeft:'40px',marginTop:'20px'}}> <div style={{height:'10px',width:'10px',borderRadius:'20px',borderStyle:'none',background:'#90C4CC',marginTop:'5px'}}></div><div style={{marginLeft:'10px',fontSize:'20px'}}>High-priority</div>  <div style={{marginLeft:'190px',fontWeight:'bold',fontSize:'20px'}}>{counthigh}</div> </div>
+          <div style={{display:'flex', flexDirection:'row',marginLeft:'40px',marginTop:'20px'}}> <div style={{height:'10px',width:'10px',borderRadius:'20px',borderStyle:'none',background:'#90C4CC',marginTop:'5px'}}></div><div style={{marginLeft:'10px',fontSize:'20px'}}>Moderate-priority  </div>  <div style={{marginLeft:'153px',fontWeight:'bold',fontSize:'20px'}}>{countmedium}</div> </div>
+          <div style={{display:'flex', flexDirection:'row',marginLeft:'40px',marginTop:'20px'}}> <div style={{height:'10px',width:'10px',borderRadius:'20px',borderStyle:'none',background:'#90C4CC',marginTop:'5px'}}></div><div style={{marginLeft:'10px',fontSize:'20px'}}>Due-date task</div>  <div style={{marginLeft:'185px',fontWeight:'bold',fontSize:'20px'}}>0</div> </div>
           </div>
         </div>
       </div>

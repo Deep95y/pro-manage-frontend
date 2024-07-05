@@ -101,6 +101,25 @@ const EditModel = ({ handleClose, id }) => {
     window.location.reload();
   };
 
+  const handleButtonClick = (priority) => {
+    setFormvalue({ ...formValue, Priority: priority });
+  };
+
+  const getButtonStyle = (priority) => {
+    const isSelected = formValue.Priority === priority;
+    return {
+      height: '30px',
+      width: '150px',
+      borderRadius: '8px',
+      border: '1px solid #E2E2E2',
+      background:  `${isSelected ? '#EEECEC' : 'white'}`,
+      color: 'grey',
+      fontFamily: 'sans-serif',
+      marginLeft: '5px',
+      position: 'relative',
+    };
+  };
+
   return (
     <>
       <div className="scrollbar"
@@ -108,7 +127,7 @@ const EditModel = ({ handleClose, id }) => {
           display: 'flex',
           flexDirection: 'column',
           height: '500px',
-          width: '600px',
+          width: '650px',
           background: 'white',
           margin: 'auto',
           overflowY: 'scroll',
@@ -119,11 +138,11 @@ const EditModel = ({ handleClose, id }) => {
       >
         <h2 className="title" style={{ marginLeft: '20px' }}>Title</h2>
         <br />
-        <div style={{ marginLeft: '20px' }}>
+        <div style={{ marginLeft: '20px',position:'absolute',marginTop:'10%' }}>
           <input
             type="text"
             placeholder="Enter Task Title"
-            style={{ height: '35px', width: '400px', borderRadius: '8px', border: '3px solid #EDF5FE' }}
+            style={{ height: '35px', width: '500px', borderRadius: '8px', border: '3px solid #EDF5FE' }}
             onChange={(e) =>
               setFormvalue({
                 ...formValue,
@@ -133,48 +152,91 @@ const EditModel = ({ handleClose, id }) => {
             value={formValue.Title}
           />
         </div>
-        <div style={{ display: 'flex', flexDirection: "row", marginTop: '30px' }}>
-          <div className="modal" style={{ marginLeft: '20px' }}>Select priority:</div>
+        <div style={{ display: 'flex', flexDirection: "row", marginTop: '40px' }}>
+          <div className="modal" style={{ marginLeft: '20px',marginTop:'7px',fontWeight:'bold' }}>Select priority:</div>
           <div style={{ marginLeft: '10px' }}>
-            <button
-              type="button"
-              style={{ height: '30px', width: '130px', borderRadius: '8px', border: '2px solid #EDF5FE', background: 'white', color: 'grey', fontFamily: 'sans-serif' }}
-              onClick={() => setFormvalue({ ...formValue, Priority: "High priority" })}
-            >
-              HIGH PRIORITY
-            </button>
+          <button
+        type="button"
+        style={getButtonStyle('High priority')}
+        onClick={() => handleButtonClick('High priority')}
+      >
+        <div style={{ marginLeft: '15px'}}>
+          HIGH PRIORITY
+        </div>
+        <div
+          style={{
+            height: '10px',
+            width: '10px',
+            background: '#FF2473',
+            borderRadius: '20px',
+            borderStyle: 'none',
+            marginTop: '6px',
+            position: 'absolute',
+            top: '10%',
+            
+          }}
+        ></div>
+      </button>
           </div>
           <div style={{ marginLeft: '10px' }}>
-            <button
-              type="button"
-              style={{ height: '30px', width: '150px', borderRadius: '8px', border: '2px solid #EDF5FE', background: 'white', color: 'grey', fontFamily: 'sans-serif' }}
-              onClick={() => setFormvalue({ ...formValue, Priority: "Medium priority" })}
-            >
-              MEDIUM PRIORITY
-            </button>
+          <button
+        type="button"
+        style={getButtonStyle('Medium priority')}
+        onClick={() => handleButtonClick('Medium priority')}
+      >
+        <div style={{ marginLeft: '15px', marginTop: '3px' }}>
+          MEDIUM PRIORITY
+        </div>
+        <div
+          style={{
+            height: '10px',
+            width: '10px',
+            background: '#18B0FF',
+            borderRadius: '20px',
+            borderStyle: 'none',
+            marginTop: '5px',
+            position: 'absolute',
+            top: '20%',
+            
+          }}
+        ></div>
+      </button>
           </div>
           <div style={{ marginLeft: '10px' }}>
-            <button
-              type="button"
-              style={{ height: '30px', width: '130px', borderRadius: '8px', border: '2px solid #EDF5FE', background: 'white', color: 'grey', fontFamily: 'sans-serif' }}
-              onClick={() => setFormvalue({ ...formValue, Priority: "Low priority" })}
-            >
-              LOW PRIORITY
-            </button>
+          <button
+        type="button"
+        style={getButtonStyle('Low priority')}
+        onClick={() => handleButtonClick('Low priority')}
+      >
+        <div style={{ marginLeft: '15px' }}>LOW PRIORITY</div>
+        <div
+          style={{
+            height: '10px',
+            width: '10px',
+            background: '#63C05B',
+            borderRadius: '20px',
+            borderStyle: 'none',
+            position: 'absolute',
+            top: '30%',
+           
+          }}
+        ></div>
+      </button>
           </div>
         </div>
         <div>
 
-        <label htmlFor="dropdown" style={{marginLeft:'20px'}}>Assign to:</label>
+        <label htmlFor="dropdown" style={{marginLeft:'20px',marginTop:'20px',fontWeight:'bold'}}>Assign to:</label>
         <select 
           id="dropdown" 
           name="dropdown" 
           style={{
-            height: '30px',
-            width: '300px',
+            height: '35px',
+            width: '440px',
             border: '3px solid #EDF5FE',
             borderRadius: '8px',
-            marginLeft: '10px'
+            marginLeft: '10px',
+            marginTop:'20px'
           }}
           onChange={(e) => setFormvalue({ ...formValue, AssignToEmail: e.target.value })}
           value={formValue.AssignToEmail || ''}
@@ -193,7 +255,7 @@ const EditModel = ({ handleClose, id }) => {
           <div className="check" style={{ marginLeft: '20px', fontSize: '20px', fontWeight: 'bold', marginTop: '20px' }}>Checklist({checkcount}/{counter})</div>
           {formValue.Tasks.map((task, index) => (
             <div style={{ marginLeft: '10px', display: 'flex', marginTop: '10px' }} key={index}>
-              <div style={{ position: 'absolute', marginRight: '10px' }}>
+              <div style={{ }}>
                 <input
                   type="checkbox"
                   checked={task.status === 'true' || task.status === true}
@@ -209,7 +271,7 @@ const EditModel = ({ handleClose, id }) => {
                   }}
                 />
               </div>
-              <div style={{ marginLeft: '10px' }}>
+              <div style={{}}>
                 <input
                   type="text"
                   placeholder="Add Text Here"
@@ -226,10 +288,10 @@ const EditModel = ({ handleClose, id }) => {
                   
                 />
               </div>
-              <div style={{ position: 'absolute', marginLeft: '63%', marginTop: '9px' }}>
+              <div style={{}}>
                 <img
                   src="binimg.png"
-                  style={{ height: '15px', width: '15px' }}
+                  style={{ height: '15px', width: '15px',marginTop:'7px' }}
                   onClick={() => handleDelete(index)}
                   alt="Delete"
                 />
@@ -238,7 +300,7 @@ const EditModel = ({ handleClose, id }) => {
           ))}
         </div>
         <div style={{ marginLeft: '30px', marginTop: '10px', cursor: 'pointer', color: 'grey', fontSize: '20px' }} onClick={handleAddDiv}>+ Add New</div>
-        <div style={{ display: 'flex', flexDirection: 'row', marginTop: '10%' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5%' }}>
           <div>
             <input
               type="date"

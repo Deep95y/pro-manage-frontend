@@ -60,9 +60,9 @@ const Sidebar = () => {
        <div style={{marginTop:'6px',marginLeft:'12px'}}><SiCodesandbox size={17} color="blue" /></div>
       <div style={{ cursor: "pointer", color: "black",fontWeight:'bold',fontSize:'25px',fontFamily:'sans-serif',marginLeft:'10px' }}>Pro Manage</div></div>
       <br />
-      <div  style={{display:'flex',flexDirection:'row',marginTop:'15%'}}>
+      <div   className="board" style={{display:'flex',flexDirection:'row',marginTop:'15%'}}>
       <div style={{marginTop:'5px',marginLeft:'10px'}}><MdDashboard size={20} color="#707070" /></div>
-      <div className="board" style={{ cursor: "pointer",color:"#707070",marginLeft:'10px',fontSize:'25px',fontFamily:'sans-serif'}} onClick={handleBoard}>
+      <div  style={{ cursor: "pointer",color:"#707070",marginLeft:'10px',fontSize:'25px',fontFamily:'sans-serif'}} onClick={handleBoard}>
         Board
       </div></div>
       <br />

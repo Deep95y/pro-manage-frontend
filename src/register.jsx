@@ -18,7 +18,8 @@ const Register = () => {
     ConfirmPassword: null,
     Password: null,
   });
-
+ 
+  window.localStorage.setItem("userInfo", JSON.stringify(formvalue));
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -75,6 +76,8 @@ const Register = () => {
     if (isError) {
       return;
     } else {
+      window.localStorage.setItem("userInfo", JSON.stringify(formvalue));
+   
       UserRegistered(formvalue)
       .then(response => {
         if (response.status === 'SUCCESS') {

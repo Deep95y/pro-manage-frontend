@@ -8,7 +8,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import axios from "axios";
 import { FaUser } from 'react-icons/fa';
 import Share from './share';
-// import jwtDecode from 'jwt-decode';
+import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 
 const Board = ({}) => {
 
@@ -27,6 +27,8 @@ const Board = ({}) => {
   const [period, setPeriod] = useState('today');
   const [tasks, setTasks] = useState([]);
   const [user, setUser] = useState(null);
+  const userData = JSON.parse(window.localStorage.getItem("userInfo"));
+
 
   const customStyles = {
     overlay: {
@@ -240,6 +242,28 @@ const Board = ({}) => {
     }
   };
 
+  const currentDate = new Date();
+
+  const getFormattedDate = (date) => {
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'short' });
+    const year = date.getFullYear();
+  
+    const getDayWithSuffix = (day) => {
+      if (day > 3 && day < 21) return `${day}th`;
+      switch (day % 10) {
+        case 1: return `${day}st`;
+        case 2: return `${day}nd`;
+        case 3: return `${day}rd`;
+        default: return `${day}th`;
+      }
+    };
+  
+    const dayWithSuffix = getDayWithSuffix(day);
+  
+    return `${dayWithSuffix} ${month}, ${year}`;
+  };
+  const formattedDate = getFormattedDate(currentDate);
 
   return (
     <>
@@ -247,13 +271,15 @@ const Board = ({}) => {
         <div style={{ borderRightStyle: 'inset', width: '200px', borderRight: '2px solid #EDF5FE' }}><Sidebar /></div>
         <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', flexDirection: 'row', marginLeft: '30px', marginTop: '20px' }}>
-  
 
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              {token && (
-                <div><h1 style={{ color: 'black',marginLeft:'14px' }}>Welcome!{"abc"}</h1></div>
+
+            <div style={{ display: 'flex', flexDirection: 'column'}}>
+              <div>
+            {token && (
+                <div><h1 style={{ color: 'black',marginLeft:'14px',fontFamily:'sans-serif'}}>Welcome!{userData.Name}</h1></div>
               )}
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
+            </div>
+              <div style={{ display: 'flex', flexDirection: 'row',marginTop:'30px' }}>
 
                 <div style={{ fontSize: '25px', fontWeight: 'bold',fontFamily:'sans-serif',marginLeft:'20px' }}>Board</div>
 
@@ -262,7 +288,7 @@ const Board = ({}) => {
               </div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              {/* <div>Date</div>  */}
+            <div style={{position:'absolute',marginLeft:'57%',color:'#707070'}}>{formattedDate}</div>
               <div style={{ position: 'absolute', marginLeft: '57%', marginTop: '60px' }}>
                 <select className="select" value={period} onChange={handlePeriodChange}>This week
                   <option value="today">Today</option>
@@ -271,8 +297,8 @@ const Board = ({}) => {
                 </select>
               </div>
             </div></div>
-          <div style={{ display: 'flex', flexDirection: 'row', marginTop: '30px', marginLeft: '50px' }}>
-            <div style={{ background: '#F9FCFF', height: '600px', width: '350px', overflowY: 'scroll'}}>
+          <div style={{ display: 'flex', flexDirection: 'row', marginTop: '40px', marginLeft: '50px' }}>
+            <div style={{ background: '#EEF2F5', height: '580px', width: '350px', overflowY: 'scroll',borderRadius:'10px' }}>
              <div style={{display:'flex',flexDirection:'row'}}>
               <div style={{ marginTop: '20px', marginLeft: '20px',fontWeight:'bold' }}>Backlog</div>
               <div onClick={cardCollapsebacklog} style={{position:'absolute', marginLeft:'21%',marginTop:'20px'}}><img src="minmax.png" style={{ height: '20px', width: '20px'}}
@@ -281,8 +307,8 @@ const Board = ({}) => {
 
               <Container style={{}}>
                 {backlog.length ? backlog.map((each, index) => (
-                  <div key={each._id} style={{ height: '300px', width: '290px', background: 'white', borderRadius: '10px', paddingLeft: '10px', paddingTop: '20px', overflowY: 'initial', border: '3px solid #EDF5FE', marginTop: '20px', marginLeft: '10px' }}>
-                    <p style={{ fontSize: '20px', cursor: 'pointer', color: 'black', float: 'right', paddingRight: '10px' }} onClick={() => handleCardPopup(each._id)}>...</p>
+                  <div key={each._id} style={{ height: '300px', width: '290px', background: 'white', borderRadius: '10px', paddingLeft: '10px', paddingTop: '20px', overflowY: 'initial', border: '3px solid #EDF5FE', marginTop: '20px', marginLeft: '20px' }}>
+                    <div style={{ fontSize: '20px', cursor: 'pointer', color: 'black', float: 'right', paddingRight: '10px',marginBottom:'10px' }} onClick={() => handleCardPopup(each._id)}>...</div>
                     {visiblePopupId === each._id && (
                       <div style={{ marginLeft: '16%', marginTop: '3%', position: 'absolute' }}>
                         <Cardpopup id={each._id} fetchTasks={fetchTasks} period={period}/>
@@ -308,9 +334,9 @@ const Board = ({}) => {
                         )}
                         </div>
                     <div><h2>{each.Title}</h2></div>
-                    <img src="dropdown.png" alt="dropdown" onClick={cardCollapsebacklog} style={{ height: '20px', width: '20px', float: 'right' }}
-
-                      {...cardCollapse ? 'Expand' : 'Collapse'} />
+                    <div onClick={cardCollapsebacklog} style={{ cursor: 'pointer', float: 'right',height:'25px',width:'25px',background:'#EEECEC',marginRight:'10px',borderRadius:'6px' }}>
+        {cardCollapse ? <FaChevronUp style={{ height: '15px', width: '15px',marginLeft:'5px',marginTop:'5px',color:'grey' }} /> : <FaChevronDown style={{ height: '15px', width: '15px',marginLeft:'5px',color:'grey',marginTop:'5px' }} />}
+      </div>
 
                     <div className='check' style={{fontSize:'18px',fontWeight:'bold',fontFamily:'sans-serif'}}>Checklist({checkcount}/{each.Tasks.length})</div>
 
@@ -322,19 +348,19 @@ const Board = ({}) => {
                             <div>
                               <input
                                 type="checkbox"
-                                style={{ marginLeft: '20px', background: '#17A2B8', height: '15px', width: '15px', borderRadius: '10px' }}
+                                style={{ marginLeft: '10px', background: '#17A2B8', height: '15px', width: '15px', borderRadius: '10px',marginTop:'7px' }}
                                 onChange={(e) => handleCheck(e.target.checked, each._id, taskIndex)}
                                 checked={task.status}
                               /></div>
-                            <div style={{ height: '20px', width: '150px', background: 'white', borderColor: 'black', marginLeft: '10px' }}>{task.task} - {task.status}</div></div>
-                          // <div key={taskIndex}>{task.task} - {task.status}</div>
+                            <div style={{ height: '20px', width: '150px', background: 'white', borderColor: 'black', marginTop:'5px',marginLeft:'5px' }}>{task.task} - {task.status}</div></div>
+                    
                         ))}
                       </div>}
                     <div style={{ display: 'flex', flexDirection: 'row', marginTop: '10%' }}>
-                      <button type="button" style={{ height: '30px', width: '50px', borderRadius: '8px', background: '#CF3636', color: 'white', borderStyle: 'none' }}>{formatDate(each.DueDate)}</button>
-                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px' }} onClick={() => updateState("todo", each._id)}>To-do</button>
-                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px' }} onClick={() => updateState("inprogress", each._id)}>Progress</button>
-                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px' }} onClick={() => updateState("done", each._id)}>Done</button></div>
+                      <button type="button" style={{ height: '30px', width: '60px', borderRadius: '8px', background: '#CF3636', color: 'white', borderStyle: 'none',fontFamily:'sans-serif' }}>{formatDate(each.DueDate)}</button>
+                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px',fontFamily:'sans-serif' }} onClick={() => updateState("todo", each._id)}>To-do</button>
+                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px',fontFamily:'sans-serif' }} onClick={() => updateState("inprogress", each._id)}>Progress</button>
+                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px',fontFamily:'sans-serif' }} onClick={() => updateState("done", each._id)}>Done</button></div>
                   </div>
 
 
@@ -343,7 +369,7 @@ const Board = ({}) => {
 
 
             </div>
-            <div style={{ background: '#F9FCFF', height: '600px', width: '350px', marginLeft: '25px', overflowY: 'scroll', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ background: '#EEF2F5', height: '580px', width: '350px', marginLeft: '25px', overflowY: 'scroll', display: 'flex', flexDirection: 'column',borderRadius:'10px'  }}>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div style={{ marginLeft: '20px', marginTop: '20px',fontWeight:'bold' }}>To-do</div>
                 <div style={{ marginLeft: '70%' }} onClick={cardCollapsetodo}><img src="minmax.png" style={{ height: '20px', width: '20px', marginTop: '20px' }}   
@@ -353,8 +379,8 @@ const Board = ({}) => {
               </div>
               <Container style={{}}>
                 {todo.length ? todo.map((each, index) => (
-                  <div key={each._id} style={{ height: '300px', width: '280px', background: 'white', borderRadius: '10px', paddingLeft: '10px', overflowY: 'hidden', border: '2px solid #EDF5FE', marginTop: '20px', marginLeft: '10px' }}>
-                    <p style={{ fontSize: '20px', cursor: 'pointer', color: 'black', float: 'right', paddingRight: '10px' }} onClick={() => handleCardPopup(each._id)}>...</p>
+                  <div key={each._id} style={{ height: '300px', width: '290px', background: 'white', borderRadius: '10px', paddingLeft: '10px', overflowY: 'hidden', border: '2px solid #EDF5FE', marginTop: '20px', marginLeft: '28px' }}>
+                    <div style={{ fontSize: '20px', cursor: 'pointer', color: 'black', float: 'right', paddingRight: '10px' }} onClick={() => handleCardPopup(each._id)}>...</div>
                     {visiblePopupId === each._id && (
                       <div style={{ marginLeft: '16%', marginTop: '3%', position: 'absolute' }}>
                         <Cardpopup id={each._id} fetchTasks={fetchTasks} period={period}/>
@@ -381,35 +407,37 @@ const Board = ({}) => {
                     <div><h2>{each.Title}</h2></div>
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                       <div className='check' style={{fontSize:'18px',fontWeight:'bold',fontFamily:'sans-serif'}}>Checklist({checkcount}/{each.Tasks.length})</div>
-                      <div><img src="dropdown.png" alt="dropdown" onClick={cardCollapsetodo} style={{ height: '20px', width: '20px', marginLeft: '100px' }}
-                        {...cardCollapse2 ? 'Expand' : 'Collapse'} /></div>
+                      <div onClick={cardCollapsetodo} style={{ cursor: 'pointer', float: 'right',height:'25px',width:'25px',background:'#EEECEC',borderRadius:'6px',display:'flex',marginLeft:'40%' }}>
+        {cardCollapse2 ? <FaChevronUp style={{ height: '15px', width: '15px',marginLeft:'5px',marginTop:'5px',color:'grey' }} /> : <FaChevronDown style={{ height: '15px', width: '15px',marginLeft:'5px',marginTop:'5px',color:'grey'}} />}
+      </div>
                     </div>
+                   
 
                     {!cardCollapse2 &&
                       <div>
                         {each.Tasks.map((task, taskIndex) => (
                           <div key={task._id} style={{ display: 'flex', flexDirection: 'row', marginTop: '10px', height: '30px', width: '200px', borderRadius: '10px', border: '2px solid #EDF5FE' }}>
                             <div><input type="checkbox"
-                              style={{ marginLeft: '20px', background: '#17A2B8', height: '15px', width: '15px', borderRadius: '10px' }}
+                              style={{ marginLeft: '10px', background: '#17A2B8', height: '15px', width: '15px', borderRadius: '10px',marginTop:'7px' }}
                               onChange={(e) => handleCheck(e.target.checked, each._id, taskIndex)}
                               checked={task.status}>
                             </input></div>
-                            <div style={{ height: '20px', width: '150px', background: 'white', borderColor: 'black' }}>{task.task} - {task.status}</div></div>
-                          // <div key={taskIndex}>{task.task} - {task.status}</div>
+                            <div style={{ height: '20px', width: '150px', background: 'white', borderColor: 'black',marginTop:'5px',marginLeft:'5px'}}>{task.task} - {task.status}</div></div>
+                      
                         ))}
                       </div>}
                     <div style={{ display: 'flex', flexDirection: 'row', marginTop: '10%' }}>
-                      <button type="button" style={{ height: '30px', width: '50px', borderRadius: '8px', background: '#CF3636', color: 'white', borderStyle: 'none' }}>{formatDate(each.DueDate)}</button>
-                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px' }} onClick={() => updateState("backlog", each._id)}>Backlog</button>
-                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px' }} onClick={() => updateState("inprogress", each._id)}>Progress</button>
-                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px' }} onClick={() => updateState("done", each._id)}>Done</button></div>
+                      <button type="button" style={{ height: '30px', width: '60px', borderRadius: '8px', background: '#CF3636', color: 'white', borderStyle: 'none',fontFamily:'sans-serif' }}>{formatDate(each.DueDate)}</button>
+                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px',fontFamily:'sans-serif' }} onClick={() => updateState("backlog", each._id)}>Backlog</button>
+                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px',fontFamily:'sans-serif' }} onClick={() => updateState("inprogress", each._id)}>Progress</button>
+                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px',fontFamily:'sans-serif' }} onClick={() => updateState("done", each._id)}>Done</button></div>
                   </div>
 
 
                 )) : null}
               </Container>
             </div>
-            <div style={{ background: '#F9FCFF', height: '600px', width: '350px', marginLeft: '25px', overflowY: 'scroll' }}>
+            <div style={{ background: '#EEF2F5', height: '580px', width: '350px', marginLeft: '25px', overflowY: 'scroll',borderRadius:'10px'}}>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div style={{ marginLeft: '20px', marginTop: '20px',fontWeight:'bold' }}>In-progress</div>
                 <div style={{ marginLeft: '60%', marginTop: '20px' }} onClick={cardCollapseprogress}><img src="minmax.png" style={{ height: '20px', width: '20px' }}  
@@ -418,8 +446,8 @@ const Board = ({}) => {
 
               <Container style={{}}>
                 {inprogress.length ? inprogress.map((each, index) => (
-                  <div key={each._id} data={each} style={{ height: '300px', width: '270px', background: 'white', borderRadius: '10px', paddingLeft: '10px', paddingTop: '10px', overflowY: 'hidden', marginTop: '20px', marginLeft: '20px' }}>
-                    <p style={{ fontSize: '20px', cursor: 'pointer', color: 'black', float: 'right', paddingRight: '10px' }} onClick={() => handleCardPopup(each._id)}>...</p>
+                  <div key={each._id} data={each} style={{ height: '300px', width: '290px', background: 'white', borderRadius: '10px', paddingLeft: '10px', paddingTop: '10px', overflowY: 'hidden', marginTop: '20px', marginLeft: '28px' }}>
+                    <div style={{ fontSize: '20px', cursor: 'pointer', color: 'black', float: 'right', paddingRight: '10px' }} onClick={() => handleCardPopup(each._id)}>...</div>
                     {visiblePopupId === each._id && (
                       <div style={{ marginLeft: '16%', marginTop: '3%', position: 'absolute' }}>
                         <Cardpopup id={each._id} fetchTasks={fetchTasks} period={period}/>
@@ -447,35 +475,38 @@ const Board = ({}) => {
                     <div><h2>{each.Title}</h2></div>
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                       <div className='check' style={{fontSize:'18px',fontWeight:'bold',fontFamily:'sans-serif'}}>Checklist({checkcount}/{each.Tasks.length})</div>
-                      <div><img src="dropdown.png" alt="dropdown" onClick={cardCollapseprogress} style={{ height: '20px', width: '20px', marginLeft: '100px' }}
-                        {...cardCollapse3 ? 'Expand' : 'Collapse'} /></div>
+                   
+                <div onClick={cardCollapseprogress} style={{ cursor: 'pointer', float: 'right',height:'25px',width:'25px',background:'#EEECEC',borderRadius:'6px',display:'flex',marginLeft:'40%' }}>
+                        {cardCollapse3 ? <FaChevronUp style={{ height: '15px', width: '15px',marginLeft:'5px',marginTop:'5px',color:'grey' }} /> : <FaChevronDown style={{ height: '15px', width: '15px',marginLeft:'5px',marginTop:'5px',color:'grey'}} />}
+                      </div>
+
                     </div>
                     {!cardCollapse3 &&
                       <div>
                         {each.Tasks.map((task, taskIndex) => (
                           <div key={task._id} style={{ display: 'flex', flexDirection: 'row', marginTop: '10px', height: '30px', width: '200px', borderRadius: '10px', border: '2px solid #EDF5FE' }}>
                             <div><input type="checkbox"
-                              style={{ marginLeft: '20px', background: '#17A2B8', height: '15px', width: '15px', borderRadius: '10px' }}
+                              style={{ marginLeft: '10px', background: '#17A2B8', height: '15px', width: '15px', borderRadius: '10px',marginTop:'6px' }}
                               onChange={(e) => handleCheck(e.target.checked, each._id,taskIndex)}
                               checked={task.status}>
                             
                             </input></div>
-                            <div style={{ height: '20px', width: '150px', background: 'white', borderColor: 'black' }}>{task.task} - {task.status}</div></div>
-                          // <div key={taskIndex}>{task.task} - {task.status}</div>
+                            <div style={{ height: '20px', width: '150px', background: 'white', borderColor: 'black',marginTop:'5px',marginLeft:'5px' }}>{task.task} - {task.status}</div></div>
+                       
                         ))}
                       </div>}
                     <div style={{ display: 'flex', flexDirection: 'row', marginTop: '10%' }}>
-                      <button type="button" style={{ height: '30px', width: '50px', borderRadius: '8px', background: '#CF3636', color: 'white', borderStyle: 'none' }}>{formatDate(each.DueDate)}</button>
-                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px' }} onClick={() => updateState("backlog", each._id)}>Backlog</button>
-                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px' }} onClick={() => updateState("todo", each._id)}>To-do</button>
-                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px' }} onClick={() => updateState("done", each._id)}>Done</button></div>
+                      <button type="button" style={{ height: '30px', width: '60px', borderRadius: '8px', background: '#CF3636', color: 'white', borderStyle: 'none' }}>{formatDate(each.DueDate)}</button>
+                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px',fontFamily:'sans-serif' }} onClick={() => updateState("backlog", each._id)}>Backlog</button>
+                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px',fontFamily:'sans-serif' }} onClick={() => updateState("todo", each._id)}>To-do</button>
+                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px',fontFamily:'sans-serif' }} onClick={() => updateState("done", each._id)}>Done</button></div>
                   </div>
 
 
                 )) : null}
               </Container>
             </div>
-            <div style={{ background: '#F9FCFF', height: '600px', width: '350px', marginLeft: '25px', overflowY: 'scroll' }}>
+            <div style={{ background: '#EEF2F5', height: '585px', width: '350px', marginLeft: '25px', overflowY: 'scroll',borderRadius:'10px',borderBottomLeftRadius:'10px' }}>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div style={{ marginLeft: '20px', marginTop: '20px',fontWeight:'bold' }}>Done</div>
                 <div style={{ marginLeft: '60%', marginTop: '20px' }} onClick={cardCollapsedone} ><img src="minmax.png" style={{ height: '20px', width: '20px' }}   
@@ -483,8 +514,8 @@ const Board = ({}) => {
               </div>
               <Container style={{}}>
                 {done.length ? done.map((each, index) => (
-                  <div key={each._id} style={{ height: '300px', width: '290px', background: 'white', borderRadius: '10px', paddingLeft: '10px', paddingTop: '10px', overflowY: 'hidden', border: '2px solid #EDF5FE', marginTop: '20px', marginLeft: '10px' }}>
-                    <p style={{ fontSize: '20px', cursor: 'pointer', color: 'black', float: 'right', paddingRight: '10px' }} onClick={() => handleCardPopup(each._id)}>...</p>
+                  <div key={each._id} style={{ height: '300px', width: '290px', background: 'white', borderRadius: '10px', paddingLeft: '10px', paddingTop: '10px', overflowY: 'hidden', border: '2px solid #EDF5FE', marginTop: '20px', marginLeft: '30px' }}>
+                    <div style={{ fontSize: '20px', cursor: 'pointer', color: 'black', float: 'right', paddingRight: '10px' }} onClick={() => handleCardPopup(each._id)}>...</div>
                     {visiblePopupId === each._id && (
                       <div style={{ marginLeft: '16%', marginTop: '3%', position: 'absolute' }}>
                         <Cardpopup id={each._id} fetchTasks={fetchTasks} period={period}/>
@@ -511,8 +542,11 @@ const Board = ({}) => {
                     <div><h2>{each.Title}</h2></div>
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                       <div className='check' style={{fontSize:'18px',fontWeight:'bold',fontFamily:'sans-serif'}}>Checklist({checkcount}/{each.Tasks.length})</div>
-                      <div><img src="dropdown.png" alt="dropdown" onClick={cardCollapsedone} style={{ height: '20px', width: '20px', marginLeft: '100px' }}
-                        {...cardCollapse4 ? 'Expand' : 'Collapse'} /></div>
+                        
+              <div onClick={cardCollapsedone} style={{ cursor: 'pointer', float: 'right',height:'25px',width:'25px',background:'#EEECEC',borderRadius:'6px',display:'flex',marginLeft:'40%' }}>
+                                      {cardCollapse4 ? <FaChevronUp style={{ height: '15px', width: '15px',marginLeft:'5px',marginTop:'5px',color:'grey' }} /> : <FaChevronDown style={{ height: '15px', width: '15px',marginLeft:'5px',marginTop:'5px',color:'grey'}} />}
+                                    </div>
+
                     </div>
 
                     {!cardCollapse4 &&
@@ -520,20 +554,20 @@ const Board = ({}) => {
                         {each.Tasks.map((task, taskIndex) => (
                           <div key={task._id} style={{ display: 'flex', flexDirection: 'row', marginTop: '10px', height: '30px', width: '200px', borderRadius: '10px', border: '2px solid #EDF5FE' }}>
                             <div><input type="checkbox"
-                              style={{ marginLeft: '20px', background: '#17A2B8', height: '15px', width: '15px', borderRadius: '10px' }}
+                              style={{ marginLeft: '9px', background: '#17A2B8', height: '15px', width: '15px', borderRadius: '10px',marginTop:'8px' }}
                               onChange={(e) => handleCheck(e.target.checked, each._id, taskIndex)}
                               checked={task.status}>
                             
                             </input></div>
-                            <div style={{ height: '20px', width: '150px', background: 'white', borderColor: 'black' }}>{task.task} - {task.status}</div></div>
-                          // <div key={taskIndex}>{task.task} - {task.status}</div>
+                            <div style={{ height: '20px', width: '150px', background: 'white', borderColor: 'black',marginTop:'5px',marginLeft:'8px' }}>{task.task} - {task.status}</div></div>
+                    
                         ))}
                       </div>}
                     <div style={{ display: 'flex', flexDirection: 'row', marginTop: '10%' }}>
-                      <button type="button" style={{ height: '30px', width: '50px', borderRadius: '8px', background: '#63C05B', color: 'white', borderStyle: 'none' }}>{formatDate(each.DueDate)}</button>
-                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px' }} onClick={() => updateState("backlog", each._id)}>Backlog</button>
-                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px' }} onClick={() => updateState("inprogress", each._id)}>Progress</button>
-                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px' }} onClick={() => updateState("todo", each._id)}>To-do</button></div>
+                      <button type="button" style={{ height: '30px', width: '60px', borderRadius: '8px', background: '#63C05B', color: 'white', borderStyle: 'none',fontFamily:'sans-serif' }}>{formatDate(each.DueDate)}</button>
+                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px',fontFamily:'sans-serif' }} onClick={() => updateState("backlog", each._id)}>Backlog</button>
+                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px',fontFamily:'sans-serif', }} onClick={() => updateState("inprogress", each._id)}>Progress</button>
+                      <button type="submit" style={{ height: '30px', width: '70px', background: '#EEF2F5', color: 'grey', borderRadius: '6px', borderStyle: 'none', marginLeft: '5px',fontFamily:'sans-serif' }} onClick={() => updateState("todo", each._id)}>To-do</button></div>
                   </div>
 
 
@@ -555,18 +589,11 @@ const Board = ({}) => {
 
         <Model
 
-          handleClose={handleClose}
+          handleClose={handleClose} todo={todo}
         />
 
       </Modal>
 
-      {/* <Modal
-        isOpen={showModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-      >
-     <Cardpopup todo={todo} backlog={backlog} inprogress={inprogress} done={done} deleteValue={deleteValue} closeModal={closeModal}/>
-      </Modal> */}
 
       <Modal
         isOpen={showAddPeople}

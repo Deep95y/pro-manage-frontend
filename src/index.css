@@ -17,7 +17,7 @@
 }
 
 .board:hover, .analytics:hover, .setting:hover {
-  background-color: #4391ED;
+  background-color: #D6EAF4;
   color: white; /* Optional: to change text color on hover */
 }
 

@@ -1,5 +1,5 @@
 import './index.css';
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CardCreate from './authcreate';
@@ -7,11 +7,13 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Swal from 'sweetalert2';
 
-const Model = ({ handleClose }) => {
+
+const Model = ({ handleClose, todo }) => {
   const [Status, setStatus] = useState("unchecked");
   const [counter, setCounter] = useState(1);
   const [checkcount, setCheckcount] = useState(0);
   const [checked, setChecked] = useState(false);
+  const [getusers, setGetusers] = useState([]);
   const [formValue, setFormvalue] = useState({
     Title: "",
     Tasks: [{ task: "", status: checked }],
@@ -83,7 +85,6 @@ const Model = ({ handleClose }) => {
       height: '30px',
       width: '150px',
       borderRadius: '8px',
-      // border: `2px solid ${isSelected ? '#EEECEC' : 'white'}`,
       border: '1px solid #E2E2E2',
       background:  `${isSelected ? '#EEECEC' : 'white'}`,
       color: 'grey',
@@ -92,6 +93,17 @@ const Model = ({ handleClose }) => {
       position: 'relative',
     };
   };
+
+  useEffect(() => {
+    getAdddetails();
+  }, []);
+
+  const getAdddetails = () => {
+    axios.get(`${import.meta.env.VITE_API_URL}/users/getAdduser`)
+      .then((res) => {
+        setGetusers(res.data);
+      });
+  }
 
 
   return (
@@ -104,7 +116,7 @@ const Model = ({ handleClose }) => {
           width: '630px',
           background: 'white',
           margin: 'auto',
-          overflowY: 'none',
+          overflowY: 'scroll',
           scrollbarWidth: 'thin',
            msScrollbarShadowColor: 'lightskyblue',
            borderRadius: '15px',
@@ -113,11 +125,11 @@ const Model = ({ handleClose }) => {
       >
         <h2 className="title" style={{ marginLeft: '20px' }}>Title</h2>
         <br />
-        <div style={{ marginLeft: '20px',position:'absolute',marginTop:'60px' }}>
+        <div style={{ marginLeft: '20px' }}>
           <input
             type="text"
             placeholder="Enter Task Title"
-            style={{ height: '35px', width: '400px', borderRadius: '8px', border: '3px solid #EDF5FE' }}
+            style={{ height: '35px', width: '540px', borderRadius: '8px', border: '3px solid #EDF5FE',position:'relative'}}
             onChange={(e) =>
               setFormvalue({
                 ...formValue,
@@ -127,9 +139,9 @@ const Model = ({ handleClose }) => {
             value={formValue.Title}
           />
         </div>
-        <div style={{ display: 'flex', flexDirection: "row", marginTop: '30px' }}>
-          <div style={{ marginLeft: '20px',position:'absolute',marginTop:'3px' }}>Select priority:</div>
-          <div style={{ marginLeft: '130px' }}>
+        <div style={{ display: 'flex', flexDirection: "row", marginTop: '20px' }}>
+          <div style={{ marginLeft:'20px',marginTop:'3px',fontWeight:'bold' }}>Select priority:</div>
+          <div style={{  }}>
          <button
         type="button"
         style={getButtonStyle('High priority')}
@@ -197,11 +209,44 @@ const Model = ({ handleClose }) => {
       </button>
     </div>
     </div>
+
+    <div style={{marginTop:'20px'}}>
+  {todo.length ? (
+    <>
+      <label htmlFor="dropdown" style={{ marginLeft: '20px', fontWeight: 'bold' }}>
+        Assign to:
+      </label>
+      <select
+        id="dropdown"
+        name="dropdown"
+        style={{ height: '35px', width: '460px', border: '3px solid #EDF5FE', borderRadius: '8px', marginLeft: '10px' }}
+        onChange={(e) => setFormvalue({ ...formValue, AssignToEmail: e.target.value })}
+      >
+        <option value="" disabled selected>
+          Select an option
+        </option>
+        {getusers.length ? (
+          getusers.map((each, index) => (
+            <option value={each} key={index}>
+              {each}
+            </option>
+          ))
+        ) : (
+          <option value="" disabled>
+            No options available
+          </option>
+        )}
+      </select>
+    </>
+ 
+  ) : null}
+
+</div>
         <div>
           <div className="check" style={{ marginLeft: '20px', fontSize: '20px', fontWeight: 'bold', marginTop: '20px' }}>Checklist({checkcount}/{counter})</div>
           {Array.from(Array(counter)).map((_, index) => (
             <div style={{ marginLeft: '10px', display: 'flex', marginTop: '10px' }} key={index}>
-              <div style={{ position: 'absolute', marginRight: '10px' }}>
+              <div style={{ }}>
                 <input
                   type="checkbox"
                   style={{ marginLeft: '20px', marginTop: '10px' }}
@@ -216,11 +261,11 @@ const Model = ({ handleClose }) => {
                   }}
                 />
               </div>
-              <div style={{ marginLeft: '10px' }}>
+              <div style={{ }}>
                 <input
                   type="text"
                   placeholder="Add Text Here"
-                  style={{ height: '30px', width: '400px', borderRadius: '8px', border: '2px solid #EDF5FE', textAlign: 'center' }}
+                  style={{ height: '30px', width: '500px', borderRadius: '8px', border: '2px solid #EDF5FE', textAlign: 'center' }}
                   onChange={(e) => {
                     const newTask = e.target.value;
                     setFormvalue((prevState) => {
@@ -231,7 +276,7 @@ const Model = ({ handleClose }) => {
                   }}
                 />
               </div>
-              <div style={{ position: 'absolute', marginLeft: '63%', marginTop: '9px' }}>
+              <div style={{ marginTop: '9px' }}>
                 <img
                   src="binimg.png"
                   style={{ height: '15px', width: '15px' }}
