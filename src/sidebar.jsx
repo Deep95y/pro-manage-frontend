@@ -56,39 +56,39 @@ const Sidebar = () => {
 
   return (
     <>
-    <div style={{display:'flex',flexDirection:'row',marginTop:'20%',width:'250px'}}>
-       <div style={{marginTop:'6px',marginLeft:'12px'}}><SiCodesandbox size={17} color="blue" /></div>
-      <div style={{ cursor: "pointer", color: "black",fontWeight:'bold',fontSize:'25px',fontFamily:'sans-serif',marginLeft:'10px' }}>Pro Manage</div></div>
+    <div style={{display:'flex',flexDirection:'row',marginTop:'20%',width:'15.625rem'}}>
+       <div style={{marginTop:'.375rem',marginLeft:'.75rem'}}><SiCodesandbox size={17} color="blue" /></div>
+      <div style={{ cursor: "pointer", color: "black",fontWeight:'bold',fontSize:'1.5625rem',fontFamily:'sans-serif',marginLeft:'.625rem' }}>Pro Manage</div></div>
       <br />
       <div   className="board" style={{display:'flex',flexDirection:'row',marginTop:'15%'}}>
-      <div style={{marginTop:'5px',marginLeft:'10px'}}><MdDashboard size={20} color="#707070" /></div>
-      <div  style={{ cursor: "pointer",color:"#707070",marginLeft:'10px',fontSize:'25px',fontFamily:'sans-serif'}} onClick={handleBoard}>
+      <div style={{marginTop:'.3125rem',marginLeft:'.625rem'}}><MdDashboard size={20} color="#707070" /></div>
+      <div  style={{ cursor: "pointer",color:"#707070",marginLeft:'.625rem',fontSize:'1.5625rem',fontFamily:'sans-serif'}} onClick={handleBoard}>
         Board
       </div></div>
       <br />
       <div  className="analytics" style={{display:'flex',flexDirection:'row',marginTop:'13%'}}>
-      <div style={{marginTop:'19px',marginLeft:'10px'}}><FaDatabase size={20} color="#707070" /></div>
-      <div style={{ cursor: "pointer",color:"#707070",marginLeft:'10px',fontSize:'25px',fontFamily:'sans-serif',marginTop:'13px'}} onClick={handleAnalytics}>
+      <div style={{marginTop:'1.1875rem',marginLeft:'.625rem'}}><FaDatabase size={20} color="#707070" /></div>
+      <div style={{ cursor: "pointer",color:"#707070",marginLeft:'.625rem',fontSize:'1.5625rem',fontFamily:'sans-serif',marginTop:'.8125rem'}} onClick={handleAnalytics}>
         Analytics
       </div></div>
       <br />
       <div className="setting" style={{ cursor: "pointer",color:"#707070",marginTop:'10%',display:'flex',flexDirection:'row'}} onClick={handleSetting}>
         <div><img
           src="setting.png"
-          style={{ height: "30px", width: "30px", cursor: "pointer",marginTop:'15px',marginLeft:'5px',color:'#707070' }}
+          style={{ height: "1.875rem", width: "1.875rem", cursor: "pointer",marginTop:'.9375rem',marginLeft:'.3125rem',color:'#707070' }}
         ></img></div>
-        <div style={{marginLeft:'5px',fontSize:'25px',fontFamily:'sans-serif',marginTop:'13px'}}>Setting</div>
+        <div style={{marginLeft:'.3125rem',fontSize:'1.5625rem',fontFamily:'sans-serif',marginTop:'.8125rem'}}>Setting</div>
       </div>
 
       <div style={{ display: "flex", flexDirection: "row",marginTop:'150%' }}>
         <div>
           <img
             src="logout.png"
-            style={{ height: "22px", width: "35px", cursor: "pointer",marginTop:'20px',marginLeft:'10px' }}
+            style={{ height: "1.375rem", width: "2.1875rem", cursor: "pointer",marginTop:'1.25rem',marginLeft:'.625rem' }}
           />
         </div>
         <div onClick={handleOpen}>
-          <p style={{ color: "red", cursor: "pointer",fontFamily:'sans-serif',fontSize:'20px',marginLeft:'10px',fontWeight:'200px' }}>Log out</p>
+          <p style={{ color: "red", cursor: "pointer",fontFamily:'sans-serif',fontSize:'1.25rem',marginLeft:'.625rem',fontWeight:'12.5rem' }}>Log out</p>
         </div>
       </div>
 

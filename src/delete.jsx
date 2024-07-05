@@ -17,11 +17,11 @@ const Delete = ({closeBox,id,fetchTasks,period}) => {
     
     return(
         <>
-        <div style={{height:'200px',width:'300px',display:'flex',flexDirection:'column',background:'white',borderRadius:'10px',margin:'auto',border: '1px solid blue',}}>
-            <div style={{margin:'auto',fontSize:'18px',marginTop:'20px'}}>Are you sure you want to Delete?</div><br/>
-            <div style={{position:'absolute',marginLeft:'26px',marginTop:'70px'}}><button type = "button" style={{height:'40px',width:'250px',background: '#17A2B8',color:'white',borderRadius:'8px',borderStyle:'none'}} 
+        <div style={{height:'12.5rem',width:'18.75rem',display:'flex',flexDirection:'column',background:'white',borderRadius:'.625rem',margin:'auto',border: '.0625rem solid blue',}}>
+            <div style={{margin:'auto',fontSize:'1.125rem',marginTop:'1.25rem'}}>Are you sure you want to Delete?</div><br/>
+            <div style={{position:'absolute',marginLeft:'1.625rem',marginTop:'4.375rem'}}><button type = "button" style={{height:'2.5rem',width:'15.625rem',background: '#17A2B8',color:'white',borderRadius:'.5rem',borderStyle:'none'}} 
          onClick = {() => handleDelete(id)}>Yes Delete</button></div>
-            <div style={{position:'absolute', marginLeft:'26px',marginTop:'40%'}}><button type = "button" style={{height:'40px',width:'250px',background: 'white',color:'red',border: '1px solid #CF3636',borderRadius:'8px'}} onClick = {closeBox}>Cancel</button></div>
+            <div style={{position:'absolute', marginLeft:'1.625rem',marginTop:'40%'}}><button type = "button" style={{height:'2.5rem',width:'15.625rem',background: 'white',color:'red',border: '.0625rem solid #CF3636',borderRadius:'.5rem'}} onClick = {closeBox}>Cancel</button></div>
         </div>
         </>
     );

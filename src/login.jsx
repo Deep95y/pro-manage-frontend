@@ -46,24 +46,24 @@ const Login = () => {
         <div
           className="left"
           style={{
-            height: "700px",
-            width: "700px",
+            height: "43.75rem",
+            width: "43.75rem",
             background: "#17A2B8",
             display: "flex",
             flexDirection: "column",
           }}
         >
-          <div style={{ height: "230px", width: "350px", margin: "auto" }}>
+          <div style={{ height: "14.375rem", width: "21.875rem", margin: "auto" }}>
             <img
               src="roboimg.jpg"
-              style={{ height: "150px", width: "150px", marginLeft: "80px" }}
+              style={{ height: "9.375rem", width: "9.375rem", marginLeft: "5rem" }}
             />
             <div style={{}}>
-              <p style={{ fontSize: "30px", color: "white" }}>
+              <p style={{ fontSize: "1.875rem", color: "white" }}>
                 Welcome aboard my friend
               </p>
               <p
-                style={{ fontSize: "15px", color: "white", marginLeft: "50px" }}
+                style={{ fontSize: ".9375rem", color: "white", marginLeft: "3.125rem" }}
               >
                 just a couple of clicks and we start
               </p>
@@ -73,24 +73,24 @@ const Login = () => {
         <div
           className="right"
           style={{
-            height: "400px",
-            width: "300px",
+            height: "25rem",
+            width: "18.75rem",
             display: "flex",
             flexDirection: "column",
             margin: "auto",
           }}
         >
           <div>
-            <span style={{ fontSize: "30px" }}>Login</span>
+            <span style={{ fontSize: "1.875rem" }}>Login</span>
           </div>
           <br />
           <br />
           <div>
-          <FaEnvelope  style={{height:'15px',width:'15px',position:'absolute',marginLeft:'5px',marginTop:'10px',color:'#D0D0D0'}}/>
+          <FaEnvelope  style={{height:'.9375rem',width:'.9375rem',position:'absolute',marginLeft:'.3125rem',marginTop:'.625rem',color:'#D0D0D0'}}/>
             <input
               type="text"
               placeholder="Email"
-              style={{ width: "250px", height: "30px", borderRadius: "12px",borderColor:'#D0D0D0',textAlign:'center' }}
+              style={{ width: "15.625rem", height: "1.875rem", borderRadius: ".75rem",borderColor:'#D0D0D0',textAlign:'center' }}
               onInput={(e) =>
                 setFormvalue({
                   ...formvalue,
@@ -103,15 +103,15 @@ const Login = () => {
           </div>
           <br />
           <div>
-          <FaLock  style={{ height: "15px", width: "15px",position:'absolute',marginLeft:'5px',marginTop:'10px',color:'#D0D0D0' }}/>
+          <FaLock  style={{ height: ".9375rem", width: ".9375rem",position:'absolute',marginLeft:'.3125rem',marginTop:'.625rem',color:'#D0D0D0' }}/>
           
-          <div onClick={togglePasswordVisibility} style={{position:'absolute',marginLeft:'17%',marginTop:'10px',color:'#D0D0D0'}}>
+          <div onClick={togglePasswordVisibility} style={{position:'absolute',marginLeft:'17%',marginTop:'.625rem',color:'#D0D0D0'}}>
              {showPassword ? <FaEyeSlash /> : <FaEye />}
       </div>
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
-              style={{ width: "250px", height: "30px", borderRadius: "12px" ,borderColor:'#D0D0D0',textAlign:'center'}}
+              style={{ width: "15.625rem", height: "1.875rem", borderRadius: ".75rem" ,borderColor:'#D0D0D0',textAlign:'center'}}
               onInput={(e) =>
                 setFormvalue({
                   ...formvalue,
@@ -130,9 +130,9 @@ const Login = () => {
               style={{
                 background: "#17A2B8",
                 color: "white",
-                height: "30px",
-                width: "250px",
-                borderRadius: "15px",
+                height: "1.875rem",
+                width: "15.625rem",
+                borderRadius: ".9375rem",
                 borderStyle:'none'
               }}
               onClick={handleSubmit}
@@ -140,16 +140,16 @@ const Login = () => {
               Login
             </button>
           </div>
-          <p style={{ marginLeft: "70px" }}>Have no account yet?</p>
+          <p style={{ marginLeft: "4.375rem" }}>Have no account yet?</p>
           <div>
             <button
               type="button"
               style={{
                 background: "#fff",
                 color: "#17A2B8",
-                height: "30px",
-                width: "250px",
-                borderRadius: "15px",
+                height: "1.875rem",
+                width: "15.625rem",
+                borderRadius: ".9375rem",
                 borderColor:'lightblue'
               }}
               onClick={handleRegister}

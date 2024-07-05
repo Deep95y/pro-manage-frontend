@@ -1,0 +1,136 @@
+/* Sharedtask.css */
+
+.container {
+    height: 25rem;
+    width: 31.25rem;
+    display: flex;
+    margin: auto;
+    border: 0.25rem solid #EDF5FE;
+    flex-direction: column;
+    margin-top: 5%;
+    overflow-y: scroll;
+    border-radius: 0.75rem;
+  }
+  
+  .priority-container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .priority-dot {
+    height: 0.625rem;
+    width: 0.625rem;
+    border-radius: 1.25rem;
+    border-style: none;
+    margin-top: 11%;
+    margin-left: 10%;
+  }
+  
+  .priority-text {
+    margin-top: 10%;
+    margin-left: 0.625rem;
+  }
+  
+  .title {
+    margin-left: 10%;
+    margin-top: 0.625rem;
+    font-size: 1.875rem;
+    font-weight: bold;
+  }
+  
+  .checklist {
+    margin-left: 10%;
+    margin-top: 0.625rem;
+    font-size: 1.25rem;
+  }
+  
+  .task-container {
+    margin-left: 8%;
+  }
+  
+  .task {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.625rem;
+    height: 1.875rem;
+    width: 25rem;
+    border-radius: 0.625rem;  
+    border: 0.125rem solid #EDF5FE;
+  }
+  
+  .checkbox {
+    margin-left: 1.5625rem;
+    background: #17A2B8;
+    margin-top: 0.5625rem;
+    border-radius: 0.625rem;
+  }
+  
+  .task-text {
+    margin-top: 0.3125rem;
+    margin-left: 0.625rem;
+  }
+  
+  .due-date-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10%;
+    margin-top: 10%;
+  }
+  
+  .due-date-label {
+    margin-top: 0.5625rem;
+    font-family: sans-serif;
+    font-weight: bold;
+  }
+  
+  .due-date-value {
+    height: 2.1875rem;
+    width: 4.375rem;
+    background: #CF3636;
+    color: white;
+    border-radius: 0.75rem;
+    border-style: none;
+    margin-left: 0.9375rem;
+    text-align: center;
+  }
+  
+  .due-date-text {
+    margin-top: 0.625rem;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      width: 90%;
+      height: auto;
+      margin-top: 2%;
+    }
+  
+    .title {
+      font-size: 1.5rem;
+    }
+  
+    .checklist {
+      font-size: 1rem;
+    }
+  
+    .task {
+      width: 100%;
+    }
+  
+    .task-text {
+      font-size: 0.875rem;
+    }
+  
+    .due-date-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .due-date-value {
+      width: auto;
+      padding: 0 0.5rem;
+      margin-left: 0;
+      margin-top: 0.5rem;
+    }
+  }
+  

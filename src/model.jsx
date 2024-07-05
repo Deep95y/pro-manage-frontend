@@ -82,14 +82,14 @@ const Model = ({ handleClose, todo }) => {
   const getButtonStyle = (priority) => {
     const isSelected = formValue.Priority === priority;
     return {
-      height: '30px',
-      width: '150px',
-      borderRadius: '8px',
-      border: '1px solid #E2E2E2',
+      height: '1.875rem',
+      width: '9.375rem',
+      borderRadius: '.5rem',
+      border: '.0625rem solid #E2E2E2',
       background:  `${isSelected ? '#EEECEC' : 'white'}`,
       color: 'grey',
       fontFamily: 'sans-serif',
-      marginLeft: '10px',
+      marginLeft: '.625rem',
       position: 'relative',
     };
   };
@@ -112,24 +112,24 @@ const Model = ({ handleClose, todo }) => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          height: '500px',
-          width: '630px',
+          height: '31.25rem',
+          width: '39.375rem',
           background: 'white',
           margin: 'auto',
           overflowY: 'scroll',
           scrollbarWidth: 'thin',
            msScrollbarShadowColor: 'lightskyblue',
-           borderRadius: '15px',
+           borderRadius: '.9375rem',
           
         }}
       >
-        <h2 className="title" style={{ marginLeft: '20px' }}>Title</h2>
+        <h2 className="title" style={{ marginLeft: '1.25rem' }}>Title</h2>
         <br />
-        <div style={{ marginLeft: '20px' }}>
+        <div style={{ marginLeft: '1.25rem' }}>
           <input
             type="text"
             placeholder="Enter Task Title"
-            style={{ height: '35px', width: '540px', borderRadius: '8px', border: '3px solid #EDF5FE',position:'relative'}}
+            style={{ height: '2.1875rem', width: '33.75rem', borderRadius: '.5rem', border: '.1875rem solid #EDF5FE',position:'relative'}}
             onChange={(e) =>
               setFormvalue({
                 ...formValue,
@@ -139,25 +139,25 @@ const Model = ({ handleClose, todo }) => {
             value={formValue.Title}
           />
         </div>
-        <div style={{ display: 'flex', flexDirection: "row", marginTop: '20px' }}>
-          <div style={{ marginLeft:'20px',marginTop:'3px',fontWeight:'bold' }}>Select priority:</div>
+        <div style={{ display: 'flex', flexDirection: "row", marginTop: '1.25rem' }}>
+          <div style={{ marginLeft:'1.25rem',marginTop:'.1875rem',fontWeight:'bold' }}>Select priority:</div>
           <div style={{  }}>
          <button
         type="button"
         style={getButtonStyle('High priority')}
         onClick={() => handleButtonClick('High priority')}
       >
-        <div style={{ marginLeft: '15px'}}>
+        <div style={{ marginLeft: '.9375rem'}}>
           HIGH PRIORITY
         </div>
         <div
           style={{
-            height: '10px',
-            width: '10px',
+            height: '.625rem',
+            width: '.625rem',
             background: '#FF2473',
-            borderRadius: '20px',
+            borderRadius: '1.25rem',
             borderStyle: 'none',
-            marginTop: '6px',
+            marginTop: '.375rem',
             position: 'absolute',
             top: '10%',
             
@@ -170,17 +170,17 @@ const Model = ({ handleClose, todo }) => {
         style={getButtonStyle('Medium priority')}
         onClick={() => handleButtonClick('Medium priority')}
       >
-        <div style={{ marginLeft: '15px', marginTop: '3px' }}>
+        <div style={{ marginLeft: '.9375rem', marginTop: '.1875rem' }}>
           MEDIUM PRIORITY
         </div>
         <div
           style={{
-            height: '10px',
-            width: '10px',
+            height: '.625rem',
+            width: '.625rem',
             background: '#18B0FF',
-            borderRadius: '20px',
+            borderRadius: '1.25rem',
             borderStyle: 'none',
-            marginTop: '5px',
+            marginTop: '.3125rem',
             position: 'absolute',
             top: '20%',
             
@@ -193,13 +193,13 @@ const Model = ({ handleClose, todo }) => {
         style={getButtonStyle('Low priority')}
         onClick={() => handleButtonClick('Low priority')}
       >
-        <div style={{ marginLeft: '15px' }}>LOW PRIORITY</div>
+        <div style={{ marginLeft: '.9375rem' }}>LOW PRIORITY</div>
         <div
           style={{
-            height: '10px',
-            width: '10px',
+            height: '.625rem',
+            width: '.625rem',
             background: '#63C05B',
-            borderRadius: '20px',
+            borderRadius: '1.25rem',
             borderStyle: 'none',
             position: 'absolute',
             top: '30%',
@@ -210,16 +210,16 @@ const Model = ({ handleClose, todo }) => {
     </div>
     </div>
 
-    <div style={{marginTop:'20px'}}>
+    <div style={{marginTop:'1.25rem'}}>
   {todo.length ? (
     <>
-      <label htmlFor="dropdown" style={{ marginLeft: '20px', fontWeight: 'bold' }}>
+      <label htmlFor="dropdown" style={{ marginLeft: '1.25rem', fontWeight: 'bold' }}>
         Assign to:
       </label>
       <select
         id="dropdown"
         name="dropdown"
-        style={{ height: '35px', width: '460px', border: '3px solid #EDF5FE', borderRadius: '8px', marginLeft: '10px' }}
+        style={{ height: '2.1875rem', width: '28.75rem', border: '.1875rem solid #EDF5FE', borderRadius: '.5rem', marginLeft: '.625rem' }}
         onChange={(e) => setFormvalue({ ...formValue, AssignToEmail: e.target.value })}
       >
         <option value="" disabled selected>
@@ -243,13 +243,13 @@ const Model = ({ handleClose, todo }) => {
 
 </div>
         <div>
-          <div className="check" style={{ marginLeft: '20px', fontSize: '20px', fontWeight: 'bold', marginTop: '20px' }}>Checklist({checkcount}/{counter})</div>
+          <div className="check" style={{ marginLeft: '1.25rem', fontSize: '1.25rem', fontWeight: 'bold', marginTop: '1.25rem' }}>Checklist({checkcount}/{counter})</div>
           {Array.from(Array(counter)).map((_, index) => (
-            <div style={{ marginLeft: '10px', display: 'flex', marginTop: '10px' }} key={index}>
+            <div style={{ marginLeft: '.625rem', display: 'flex', marginTop: '.625rem' }} key={index}>
               <div style={{ }}>
                 <input
                   type="checkbox"
-                  style={{ marginLeft: '20px', marginTop: '10px' }}
+                  style={{ marginLeft: '1.25rem', marginTop: '.625rem' }}
                   onChange={(e) => {
                     const newStatus = e.target.checked;
                     setFormvalue((prevState) => {
@@ -265,7 +265,7 @@ const Model = ({ handleClose, todo }) => {
                 <input
                   type="text"
                   placeholder="Add Text Here"
-                  style={{ height: '30px', width: '500px', borderRadius: '8px', border: '2px solid #EDF5FE', textAlign: 'center' }}
+                  style={{ height: '1.875rem', width: '31.25rem', borderRadius: '.5rem', border: '.125rem solid #EDF5FE', textAlign: 'center' }}
                   onChange={(e) => {
                     const newTask = e.target.value;
                     setFormvalue((prevState) => {
@@ -276,10 +276,10 @@ const Model = ({ handleClose, todo }) => {
                   }}
                 />
               </div>
-              <div style={{ marginTop: '9px' }}>
+              <div style={{ marginTop: '.5625rem' }}>
                 <img
                   src="binimg.png"
-                  style={{ height: '15px', width: '15px' }}
+                  style={{ height: '.9375rem', width: '.9375rem' }}
                   onClick={() => handleDelete(index)}
                   alt="Delete"
                 />
@@ -287,7 +287,7 @@ const Model = ({ handleClose, todo }) => {
             </div>
           ))}
         </div>
-        <div style={{ marginLeft: '30px', marginTop: '10px', cursor: 'pointer', color: 'grey', fontSize: '20px' }} onClick={handleAddDiv}>+ Add New</div>
+        <div style={{ marginLeft: '1.875rem', marginTop: '.625rem', cursor: 'pointer', color: 'grey', fontSize: '1.25rem' }} onClick={handleAddDiv}>+ Add New</div>
         <div style={{ display: 'flex', flexDirection: 'row', marginTop: '10%' }}>
           <div>
             {/* <input
@@ -315,25 +315,25 @@ const Model = ({ handleClose, todo }) => {
             customInput={
               <input
                 name="dueDate"
-                style={{ height: '35px', width: '170px', marginLeft: '30px', marginTop: '18%', borderRadius: '8px', borderStyle: 'none', border: '2px solid #EDF5FE',textAlign:'center',fontFamily:'sans-serif',fontSize:'20px' }}
+                style={{ height: '2.1875rem', width: '10.625rem', marginLeft: '1.875rem', marginTop: '18%', borderRadius: '.5rem', borderStyle: 'none', border: '.125rem solid #EDF5FE',textAlign:'center',fontFamily:'sans-serif',fontSize:'1.25rem' }}
               />
             }
           />
     
           </div>
-          <div style={{ marginTop: '30px', marginLeft: '70px' }}>
+          <div style={{ marginTop: '1.875rem', marginLeft: '4.375rem' }}>
             <button
               type="button"
-              style={{ height: '35px', width: '130px', borderRadius: '8px', background: 'white', color: '#CF3636', border: '1px solid #CF3636', marginTop: '10px', fontWeight: 'bold' }}
+              style={{ height: '2.1875rem', width: '8.125rem', borderRadius: '.5rem', background: 'white', color: '#CF3636', border: '.0625rem solid #CF3636', marginTop: '.625rem', fontWeight: 'bold' }}
               onClick={handleCancel}
             >
               Cancel
             </button>
           </div>
-          <div style={{ marginTop: '30px', marginLeft: '30px' }}>
+          <div style={{ marginTop: '1.875rem', marginLeft: '1.875rem' }}>
             <button
               type="button"
-              style={{ height: '35px', width: '130px', borderRadius: '8px', background: '#17A2B8', color: 'white', borderStyle: 'none', marginTop: '10px', fontWeight: 'bold', fontSize: '15px' }}
+              style={{ height: '2.1875rem', width: '8.125rem', borderRadius: '.5rem', background: '#17A2B8', color: 'white', borderStyle: 'none', marginTop: '.625rem', fontWeight: 'bold', fontSize: '.9375rem' }}
               onClick={handleSave}
             >
               Save

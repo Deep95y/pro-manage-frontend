@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import Delete from "./delete";
 import EditModel from "./editmodel";
-import Sharedtask from './sharedtask';
 import { useNavigate } from "react-router-dom";
 
 const Cardpopup = ({ id, fetchTasks, period }) => {
@@ -59,10 +58,12 @@ const Cardpopup = ({ id, fetchTasks, period }) => {
         try {
             await navigator.clipboard.writeText(shareLink);
             setShowCopiedMessage(true);
+            console.log("Link copied to clipboard:", shareLink);
 
             // Hide the copied message after 3 seconds (3000 milliseconds)
             setTimeout(() => {
                 setShowCopiedMessage(false);
+                console.log("Copied message hidden");
             }, 3000);
         } catch (err) {
             console.error('Failed to copy: ', err);
@@ -71,27 +72,29 @@ const Cardpopup = ({ id, fetchTasks, period }) => {
 
     return (
         <>
-            <div style={{ height: '90px', width: '100px', background: 'white', borderRadius: '10px' }}>
-                <p style={{ marginLeft: '10px', cursor: 'pointer' }} onClick={handleOpen}>Edit</p>
-                <p style={{ marginLeft: '10px', cursor: 'pointer' }} onClick={() => handleShare(id)}>Share</p>
-                {showShare && (
+            <div style={{ height: '5.625rem', width: '6.25rem', background: 'white', borderRadius: '.625rem' }}>
+                <p style={{ marginLeft: '.625rem', cursor: 'pointer' }} onClick={handleOpen}>Edit</p>
+                <p style={{ marginLeft: '.625rem', cursor: 'pointer' }} onClick={() => handleShare(id)}>Share</p>
+                {showShare ? (
                     <div style={{
                         background: '#F6FFF9',
-                        height: '40px',
-                        width: '130px',
-                        border: '1px solid #48C1B5',
-                        boxShadow: '0px 4px 16px 0px #100B2714',
+                        height: '2.5rem',
+                        width: '8.125rem',
+                        border: '.0625rem solid #48C1B5',
+                        boxShadow: '0rem .25rem 1rem 0rem #100B2714',
                         textAlign: 'center',
-                        fontSize: '15px',
+                        fontSize: '.9375rem',
                         fontFamily: 'sans-serif',
-                        borderRadius: '10px',
+                        borderRadius: '.625rem',
                         position: 'absolute',
                         marginLeft: '70%'
                     }}>
-                        <p style={{ marginTop: '10px' }}>Link Copied</p>
+                        <p style={{ marginTop: '.625rem' }}>Link Copied</p>
                     </div>
+                ):(
+                    null
                 )}
-                <p style={{ marginLeft: '10px', cursor: 'pointer' }} onClick={openBox}>Delete</p>
+                <p style={{ marginLeft: '.625rem', cursor: 'pointer' }} onClick={openBox}>Delete</p>
             </div>
 
             <Modal

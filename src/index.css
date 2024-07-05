@@ -23,7 +23,7 @@
 
 
   .dropdown {
-   margin-left: 10px;
+   margin-left: .625rem;
    display: flex;
   
   }
@@ -37,10 +37,10 @@
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
-    padding: 10px;
+    min-width: 10rem;
+    padding: .625rem;
     z-index: 1;
-    border: 1px solid #ccc;
+    border: .0625rem solid #ccc;
   }
   
   .dropdown-content.show {
@@ -48,7 +48,7 @@
   }
 
   ::-webkit-scrollbar {
-    width: 12px; /* Width of the scrollbar */
+    width: .75rem; /* Width of the scrollbar */
   }
 
   ::-webkit-scrollbar-track {

@@ -12,11 +12,11 @@ const AddedUser = ({handleCloseAddemail, handleCancel,userAdded}) => {
    return(
 
        <>
-       <div style={{height:'250px',width:'550px',background:'white',margin:'auto',marginTop:'15%',borderRadius:'10px',display:'flex',flexDirection:'column',borderStyle:'inset'}}>
+       <div style={{height:'15.625rem',width:'34.375rem',background:'white',margin:'auto',marginTop:'15%',borderRadius:'.625rem',display:'flex',flexDirection:'column',borderStyle:'inset'}}>
            
-           <div style={{margin:'auto',marginTop:'60px',fontSize:'25px'}}>{userAdded.Addemail}</div>
+           <div style={{margin:'auto',marginTop:'3.75rem',fontSize:'1.5625rem'}}>{userAdded.Addemail}</div>
            
-            <div style={{marginLeft:'27%',position:'absolute',marginTop:'30%'}}><button type="button" style={{height:'40px',width:'240px',borderStyle:'none',borderRadius:'10px',color:'white',background:'#17A2B8',fontWeight:'bold',fontSize:'15px'}} onClick={handleAdded}>Okay! got it</button></div>
+            <div style={{marginLeft:'27%',position:'absolute',marginTop:'30%'}}><button type="button" style={{height:'2.5rem',width:'15rem',borderStyle:'none',borderRadius:'.625rem',color:'white',background:'#17A2B8',fontWeight:'bold',fontSize:'.9375rem'}} onClick={handleAdded}>Okay! got it</button></div>
         
        </div>
        </>

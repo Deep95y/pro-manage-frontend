@@ -54,10 +54,10 @@ const Share = ({handleCloseAddpeople}) => {
     return(  
 
         <>
-        <div style={{height:'250px',width:'550px',background:'white',margin:'auto',marginTop:'15%',borderRadius:'10px',display:'flex',flexDirection:'column',borderStyle:'inset'}}>
-            <div style={{marginLeft:'30px',marginTop:'20px',fontSize:'25px'}}>Add people to the board </div>
-            <div style={{marginTop:'30px',marginLeft:'20px'}}>
-                <input type = "text" placeholder="Enter the email" style={{height:'45px',width:'490px',border: '1px solid #767575',borderRadius:'10px'}}
+        <div style={{height:'15.625rem',width:'34.375rem',background:'white',margin:'auto',marginTop:'15%',borderRadius:'.625rem',display:'flex',flexDirection:'column',borderStyle:'inset'}}>
+            <div style={{marginLeft:'1.875rem',marginTop:'1.25rem',fontSize:'1.5625rem'}}>Add people to the board </div>
+            <div style={{marginTop:'1.875rem',marginLeft:'1.25rem'}}>
+                <input type = "text" placeholder="Enter the email" style={{height:'2.8125rem',width:'30.625rem',border: '.0625rem solid #767575',borderRadius:'.625rem'}}
                 onChange={(e) =>  {
                   setUserAdded((prev) => ({
                     ...prev,
@@ -68,9 +68,9 @@ const Share = ({handleCloseAddpeople}) => {
             }
                 />
             </div>
-            <div style={{display:'flex',flexDirection:'row',marginTop:'45px',marginLeft:'25px'}}>
-                <div><button type="button" style={{height:'40px',width:'240px',border: '1px solid red',borderRadius:'10px',color:'red',fontWeight:'bold',fontSize:'15px'}}  onClick={handleCancel}>Cancel</button></div>
-                <div style={{marginLeft:'10px'}}><button type="button" style={{height:'40px',width:'240px',borderStyle:'none',borderRadius:'10px',color:'white',background:'#17A2B8',fontWeight:'bold',fontSize:'15px'}} onClick={handleOpenAddemail}>Add Email</button></div>
+            <div style={{display:'flex',flexDirection:'row',marginTop:'2.8125rem',marginLeft:'1.5625rem'}}>
+                <div><button type="button" style={{height:'2.5rem',width:'15rem',border: '.0625rem solid red',borderRadius:'.625rem',color:'red',fontWeight:'bold',fontSize:'.9375rem'}}  onClick={handleCancel}>Cancel</button></div>
+                <div style={{marginLeft:'.625rem'}}><button type="button" style={{height:'2.5rem',width:'15rem',borderStyle:'none',borderRadius:'.625rem',color:'white',background:'#17A2B8',fontWeight:'bold',fontSize:'.9375rem'}} onClick={handleOpenAddemail}>Add Email</button></div>
             </div>
         </div>
 
